@@ -1,0 +1,100 @@
+>> from selenium import webdriver
+>> from selenium.webdriver.chrome.service import Service
+>> service =Service("C:/Users/User/OneDrive/Desktop/Selenium_LMS/Constants/driver/chromedriver.exe")
+>> driver = webdriver.Chrome(service=service)
+    (Browser opens here)
+>> driver.maximize_window()
+>> driver.get("https://google.com")
+
+>> search_xpath = "//textarea[@title='search']"
+
+>> from selenium.webdriver.common.by import By
+>> from selenium.webdriver.support.ui import WebDriverWait
+>> from selenium.webdriver.support import expected_conditions as EC
+>> wait = WebDriverWait(driver, 10) 
+>> searchbar_element = wait.until(EC.element_to_be_clickable((By.XPATH, search_xpath)))
+>> searchbar_element.send_keys("topgrep")
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+basic_function.py
+------------------------
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+def open_browser_to_link(url):
+    service = Service("C:/Users/User/OneDrive/Desktop/Selenium_LMS/Constants/driver/chromedriver.exe")
+    driver = webdriver.Chrome(service=service)
+    driver.maximize_window()
+    driver.get(url)
+    return driver
+       
+def click_element(driver, xpath):
+    wait = WebDriverWait(driver, 10) 
+    element = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+    element.click()
+   
+def enter_text_in_element(driver, xpath, text):
+    wait = WebDriverWait(driver, 10) 
+    element = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+    element.send_keys(text)
+
+def get_element_text(driver, xpath):
+    wait = WebDriverWait(driver, 10) 
+    element = wait.until(EC._element_if_visible((By.XPATH, xpath)))
+    return element.text
+---------------------------------------------------------------------------------------------------------
+test.py
+--------------------------------------
+from basic_functions import open_browser_to_link, click_element, enter_text_in_element
+import time 
+
+driver=open_browser_to_link( "https://artoftesting.com/samplesiteforselenium")
+click_element(driver, "//button[@type='button']")
+enter_text_in_element(driver, "//input[@name='firstName']", "Automation")
+time.sleep(30)
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+test.py file
+------------------------
+--------------------------------------------------------------------------------------------------------------------
+from library.basic_selenium_actions import*
+# from basic_functions import *
+import time 
+
+driver=open_browser_to_link( "https://artoftesting.com/samplesiteforselenium")
+time.sleep(5)
+# click_element(driver, "//button[@type='button']")
+# time.sleep(5)
+# enter_text_in_element(driver, "//input[@name='firstName']", "Automation")
+# time.sleep(5)
+# scroll_element_into_view(driver,"//select[contains(@id, 'testingDropdown')]")
+# time.sleep(5)
+# select_value_in_dropdown(driver,
+#                          "//select[contains(@id, 'testingDropdown')]",
+#                          "Manual")
+# time.sleep(5)
+# click_element(driver,"//button[contains(text(), 'Alert Box')]" )
+# time.sleep(5)
+# alert_text = handle_alert(driver)
+# time.sleep(5)
+# print(f" The alert text was {alert_text}.")
+
+# wait_until_element_is_visible(driver, "//button[contains(text(), 'Alert Box')]")
+# time.sleep(5)
+# alert_text = handle_alert(driver)
+# print(f"the alert text was {alert_text}.")
+
+time.sleep(30)
+-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+
+basic_function file
+------------------------
+-------------------------------------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------------------------------------
