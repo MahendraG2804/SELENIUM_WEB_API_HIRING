@@ -21,7 +21,7 @@ def get_jwt_token():
         "password": "hiring_robot_auto_test@getnada.coM"
     }
     response = requests.post(url, data=data)
-    assert response.status_code == 200, f"Failed to get JWT token. Status code: {response.status_code}"
+    assert response.status_code == 200, f"Failed to get the JWT token. Status code: {response.status_code}"
     jwt_token = response.json().get("token")
     print("JWT Token:", jwt_token)
     return jwt_token
